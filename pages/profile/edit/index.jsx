@@ -52,13 +52,13 @@ export default function EditProfilePage() {
               <button className="btn btn-block bg-primary text-white">
                 Simpan
               </button>
-              <button className="btn btn-block bg-none text-primary text-white btn-outline border-primary">
+              <button className="btn btn-block bg-none text-primary btn-outline border-primary">
                 Batal
               </button>
             </div>
             <div className="flex flex-col gap-5 col-span-2 w-full h-full">
               {/* Data Diri */}
-              <div className="card w-full bg-white shadow-lg bordered">
+              <div className="card w-fit mx-auto mt-10 lg:mt-0 lg:w-full bg-white shadow-lg bordered">
                 <div className="card-body">
                   <div className="card-title text-2xl font-bold">Data Diri</div>
                   <div className="divider w-full"></div>

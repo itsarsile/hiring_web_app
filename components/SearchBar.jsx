@@ -4,7 +4,7 @@ export default function SearchBar() {
       <div className="join mx-auto flex-wrap">
         <input
           type="text"
-          className="join-item w-full md:w-screen flex-1 lg:w-[50rem] input input-bordered"
+          className="join-item w-full md:w-screen flex-1 lg:w-[50rem] input input-bordered rounded-md"
         />
         <select
           name=""
@@ -20,7 +20,7 @@ export default function SearchBar() {
           <option value="">Sortir berdasarkan freelance</option>
           <option value="">Sortir berdasarkan fulltime</option>
         </select>
-        <button className="btn bg-primary text-white join-item">Search</button>
+        <button className="btn bg-primary text-white join-item rounded-md">Search</button>
       </div>
     </div>
   );
