@@ -1,11 +1,38 @@
 import Image from "next/image";
 import ModalLogin from "./ModalLogin";
 import { useState } from "react";
+import { useFormik } from "formik";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const LoginPage = () => {
   const [setOpen, setIsOpen] = useState(false);
-  const [selectedLogin, setSelectedLogin] = useState(null);
+  const router = useRouter()
+  const formData = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: async (values) => {
+      try {
+        const result = await signIn("credentials", {
+          email: values.email,
+          password: values.password,
+          redirect: false,
+        });
 
+        if (result?.error) {
+          console.error("Authentication failed: ", result.error);
+        } else {
+          console.log("Authentication succesful");
+          router.push("/")
+        }
+      } catch (error) {
+        console.error("An error occured while authenticating: ", error);
+      }
+    },
+  });
+  const [selectedLogin, setSelectedLogin] = useState(null);
   const openModal = () => {
     setIsOpen(true);
   };
@@ -37,32 +64,34 @@ const LoginPage = () => {
                 Temukan developer berbakat & terbaik di berbagai bidang keahlian
               </h1>
               <div className="mt-10 font-bold ">
-                <button className="btn btn-block text-base normal-case text-indigo-900 hover:bg-indigo-950" 
-                onClick={() => {
-                  setSelectedLogin("Pekerja") 
-                  openModal()
-                }}
+                <button
+                  className="btn btn-block text-base normal-case text-indigo-900 hover:bg-indigo-950"
+                  onClick={() => {
+                    setSelectedLogin("Pekerja");
+                    openModal();
+                  }}
                 >
                   Masuk sebagai pekerja
                 </button>
                 <div className="divider text-sm font-light before:bg-white after:bg-white">
                   atau
                 </div>
-                <button className="btn btn-block text-base normal-case text-indigo-900 hover:bg-indigo-950" 
-                onClick={() => {
-                  setSelectedLogin("Perekrut") 
-                  openModal()
-                }}
+                <button
+                  className="btn btn-block text-base normal-case text-indigo-900 hover:bg-indigo-950"
+                  onClick={() => {
+                    setSelectedLogin("Perekrut");
+                    openModal();
+                  }}
                 >
                   Masuk sebagai perekrut
                 </button>
                 {/* Modal for Mobile */}
-                <ModalLogin 
+                <ModalLogin
                   isOpen={setOpen}
                   closeModal={closeModal}
                   loginChoice={selectedLogin}
                   handleLoginChoice={handleLoginChoice}
-                  />
+                />
               </div>
             </div>
           </div>
@@ -92,12 +121,15 @@ const LoginPage = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel nihil
               libero odio quod quidem facere!
             </h2>
-            <form action="" className="form-control">
+            <form onSubmit={formData.handleSubmit} className="form-control">
               <div className="">
                 <label htmlFor="" className="label">
                   Email
                 </label>
                 <input
+                  name="email"
+                  values={formData.values.email}
+                  onChange={formData.handleChange}
                   type="text"
                   className="input input-bordered w-full"
                   placeholder="Masukkan alamat email"
@@ -108,6 +140,9 @@ const LoginPage = () => {
                   Password
                 </label>
                 <input
+                  name="password"
+                  onChange={formData.handleChange}
+                  values={formData.values.password}
                   type="password"
                   className="input input-bordered w-full"
                   placeholder="Masukkan kata sandi"
@@ -116,7 +151,7 @@ const LoginPage = () => {
               <a href="#" className="text-right mt-5">
                 Lupa password?
               </a>
-              <button className="btn btn-block mt-5 bg-amber-400 text-white">
+              <button type="submit" className="btn btn-block mt-5 bg-amber-400 text-white">
                 Masuk
               </button>
             </form>
