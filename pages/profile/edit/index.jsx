@@ -52,7 +52,7 @@ export default function EditProfilePage() {
               <button className="btn btn-block bg-primary text-white">
                 Simpan
               </button>
-              <button className="btn btn-block bg-none text-primary text-white btn-outline border-primary">
+              <button className="btn btn-block bg-none text-primary btn-outline border-primary">
                 Batal
               </button>
             </div>
