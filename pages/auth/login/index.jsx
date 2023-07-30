@@ -4,10 +4,11 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const LoginPage = () => {
   const [setOpen, setIsOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const formData = useFormik({
     initialValues: {
@@ -16,7 +17,7 @@ const LoginPage = () => {
     },
     onSubmit: async (values) => {
       try {
-        setIsSubmitting(true)
+        setIsSubmitting(true);
         const result = await signIn("credentials", {
           email: values.email,
           password: values.password,
@@ -32,7 +33,7 @@ const LoginPage = () => {
       } catch (error) {
         console.error("An error occured while authenticating: ", error);
       } finally {
-        setIsSubmitting(false)
+        setIsSubmitting(false);
       }
     },
   });
@@ -159,9 +160,19 @@ const LoginPage = () => {
                 type="submit"
                 className="btn btn-block mt-5 bg-amber-400 text-white"
               >
-                {isSubmitting ? <span className="loading loading-dots loading-md"></span> : "Masuk"}
+                {isSubmitting ? (
+                  <span className="loading loading-dots loading-md"></span>
+                ) : (
+                  "Masuk"
+                )}
               </button>
             </form>
+            <p className="text-center">
+              Belum punya akun?{" "}
+              <span className="text-amber-400">
+                <Link href="/auth/register">Daftar</Link>
+              </span>
+            </p>
           </div>
         </div>
       </div>

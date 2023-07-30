@@ -42,19 +42,19 @@ export const authOptions = {
     },
     callbacks: {
         session: async ({ session, token }) => {
-            console.log("Session Callback", { session, token });
+            // console.log("Session Callback", { session, token });
             return {
                 ...session,
                 user: {
                     ...session.user,
                     id: token.id,
                     photo: token.photo,
-                    roles: token.roles
+                    roles: token.roles,
                 },
             };
         },
         jwt: async ({ token, user }) => {
-            console.log("JWT CALLBACK: ", { token, user })
+            // console.log("JWT CALLBACK: ", { token, user })
             if (user) {
                 token.id = user.id
                 token.photo = user.photo

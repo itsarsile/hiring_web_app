@@ -1,49 +1,111 @@
 {
   "users": [
     {
-      "name": "Michael",
-      "email": "michael@hotmail.com",
-      "phoneNumber": "08123123123",
-      "password": "ajiprio123",
-      "photo": "/avatar_default.png",
+      "name": "Jogo Ratosu",
+      "email": "gojo@gmail.com",
+      "photo": "/default.webp",
+      "phoneNumber": "",
+      "password": "password123",
+      "portfolioIds": [
+        1,
+        2
+      ],
+      "workExpreienceIds": [
+        1
+      ],
+      "socialMediaAccounts": {
+        "email": "gojo@gmail.com",
+        "github": "@gojosatoru",
+        "instagram": "@gojosatoru.ig"
+      },
+      "skills": [
+        "Martial Arts",
+        "Jujutsu",
+        "Curse Techniques",
+        "CSS",
+        "HTML"
+      ],
+      "bio": "This is my bio!",
       "roles": "pekerja",
-      "id": 5
+      "id": 10,
+      "jobDesk": "Jujustu Sorcerer",
+      "domicile": "Tokyo",
+      "workPlace": "Jujutsu Highschool"
     },
     {
-      "name": "Aji",
+      "name": "Aji Prio Sejati",
       "email": "ajiprio@hotmail.com",
       "photo": "/default.webp",
-      "phoneNumber": "08123456789",
-      "password": "123456789",
+      "phoneNumber": "",
+      "password": "mypassword123",
+      "portfolioIds": [],
+      "workExpreienceIds": [],
+      "jobDesk": "Freelancer",
+      "domicile": "Tangerang",
+      "workPlace": "Tokopedia",
+      "socialMediaAccounts": {
+        "email": "",
+        "github": "",
+        "instagram": ""
+      },
+      "skills": [
+        "HTML",
+        "PHP",
+        "CSS",
+        "React"
+      ],
+      "bio": "Ini bio saya",
       "roles": "pekerja",
-      "id": 6
-    },
-    {
-      "name": "Arsile",
-      "email": "itsarsile@gmail.com",
-      "photo": "/default.webp",
-      "phoneNumber": "081122334455",
-      "password": "password123",
-      "roles": "pekerja",
-      "id": 7
-    },
-    {
-      "name": "Arsile",
-      "email": "itsarsile@github.com",
-      "photo": "/default.webp",
-      "phoneNumber": "08123456",
-      "password": "password123",
-      "roles": "pekerja",
-      "id": 8
-    },
-    {
-      "name": "Arsile",
-      "email": "itsarsile@github.com",
-      "photo": "/default.webp",
-      "phoneNumber": "08123456",
-      "password": "password123",
-      "roles": "pekerja",
-      "id": 9
+      "id": 11
     }
-  ]
+  ],
+  "portfolio": [
+    {
+      "id": 1,
+      "userId": 10,
+      "title": "Domain Expansion: Infinity",
+      "description": "An impressive display of the Cursed Technique - Domain Expansion.",
+      "url": "https://youtu.be/example-video",
+      "image": "/portfolio/gojo-domain-expansion.jpg"
+    },
+    {
+      "id": 2,
+      "userId": 10,
+      "title": "Blindfolded",
+      "description": "Fighting with a blindfold, showcasing incredible combat skills.",
+      "url": "https://www.instagram.com/p/example-post",
+      "image": "/portfolio/gojo-blindfolded.jpg"
+    },
+    {
+      "title": "Linux Kernel Project",
+      "linkRepo": "https://github.com/torvalds/linux",
+      "linkImage": "https://i.imgur.com/xCnCXPs.jpeg",
+      "userId": 10,
+      "id": 3
+    }
+  ],
+  "workExperience": [
+    {
+      "id": 1,
+      "userId": 10,
+      "title": "Jujutsu Sorcerer",
+      "company": "Tokyo Metropolitan Curse Technical College",
+      "startDate": "2010-05-15",
+      "endDate": null,
+      "description": "Teaching at Tokyo Metropolitan Curse Technical College, helping students become skilled sorcerers."
+    },
+    {
+      "userId": 10,
+      "title": "Kuli Bangunan",
+      "companyName": "WASKITA",
+      "startDate": "2020-12-29",
+      "endDate": "2024-10-29",
+      "description": "Menjadi kuli adalah impian bapak jogo",
+      "id": 2
+    }
+  ],
+  "routes": {
+    "/users/:userId/portfolio": "/portfolio?userId=:userId",
+    "/users/:userId/workExperience": "/workExperience?userId=:userId"
+  }
 }

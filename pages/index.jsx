@@ -1,13 +1,15 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Layout from "@/components/layout";
-import {signIn, useSession} from "next-auth/react"
+import { signIn, useSession } from "next-auth/react";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { data, status } = useSession()
-  console.log(data?.user, status)
+  const router = useRouter();
+  const { data, status } = useSession();
+  console.log(data?.user, status);
   return (
     <Layout>
       <main>
@@ -28,7 +30,10 @@ export default function Home() {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                   euismod ipsum et dui rhoncus auctor.
                 </p>
-                <button onClick={() => signIn("credentials")} className="btn-md lg:btn-lg bg-primary text-white rounded-md">
+                <button
+                  onClick={() => router.push("/home")}
+                  className="btn-md lg:btn-lg bg-primary text-white rounded-md"
+                >
                   Mulai Dari Sekarang
                 </button>
               </div>
@@ -158,7 +163,6 @@ export default function Home() {
             <h1 className="lg:text-5xl font-bold text-center">
               Their opinion about Peworld
             </h1>
-            
           </div>
         </section>
       </main>

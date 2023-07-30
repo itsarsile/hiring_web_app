@@ -21,6 +21,18 @@ const RegisterPage = () => {
       phoneNumber: "",
       password: "",
       passwordConfirm: "",
+      portfolioIds: [],
+      workExpreienceIds: [],
+      jobDesk: "",
+      domicile: "Not set yet",
+      workPlace: "",
+      socialMediaAccounts: {
+        email: "",
+        github: "",
+        instagram: "",
+      },
+      skills: [],
+      bio: "Not yet set"
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
