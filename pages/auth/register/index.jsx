@@ -4,8 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 const RegisterPage = () => {
+  const router = useRouter()
   const [setOpen, setIsOpen] = useState(false);
   const [selectedLogin, setSelectedLogin] = useState(null);
 
@@ -14,7 +17,7 @@ const RegisterPage = () => {
     initialValues: {
       name: "",
       email: "",
-      photo: "/avatar_default.png",
+      photo: "",
       phoneNumber: "",
       password: "",
       passwordConfirm: "",
@@ -35,7 +38,7 @@ const RegisterPage = () => {
         values.roles = DEFAULT_ROLES;
 
         if (!values.photo) {
-          values.photo = "/avatar_default.png";
+          values.photo = "/default.webp";
         }
         const { passwordConfirm, ...data } = values;
         const response = await fetch("http://localhost:5000/users", {
@@ -49,8 +52,20 @@ const RegisterPage = () => {
         } else {
           console.error("Form submission failed!");
         }
+
+        const signInResponse = await signIn("credentials", {
+          email: values.email,
+          password: values.password,
+          redirect: false,
+        })
+
+        if (signInResponse.ok) {
+          router.push("/")
+        } else {
+          console.error("Authentication after registration failed: ", signInResponse.error);
+        }
       } catch (error) {
-        console.error("An error occured while submitting: ", error);
+        console.error("An error occured while registering or logging in: ", error);
       }
     },
   });

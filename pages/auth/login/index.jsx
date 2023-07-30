@@ -7,7 +7,8 @@ import { useRouter } from "next/router";
 
 const LoginPage = () => {
   const [setOpen, setIsOpen] = useState(false);
-  const router = useRouter()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const router = useRouter();
   const formData = useFormik({
     initialValues: {
       email: "",
@@ -15,20 +16,23 @@ const LoginPage = () => {
     },
     onSubmit: async (values) => {
       try {
+        setIsSubmitting(true)
         const result = await signIn("credentials", {
           email: values.email,
           password: values.password,
           redirect: false,
         });
 
-        if (result?.error) {
-          console.error("Authentication failed: ", result.error);
+        if (result.ok) {
+          console.log("Authentication successful");
+          router.push("/");
         } else {
-          console.log("Authentication succesful");
-          router.push("/")
+          console.error("Authentication gagal: ", result.error);
         }
       } catch (error) {
         console.error("An error occured while authenticating: ", error);
+      } finally {
+        setIsSubmitting(false)
       }
     },
   });
@@ -151,8 +155,11 @@ const LoginPage = () => {
               <a href="#" className="text-right mt-5">
                 Lupa password?
               </a>
-              <button type="submit" className="btn btn-block mt-5 bg-amber-400 text-white">
-                Masuk
+              <button
+                type="submit"
+                className="btn btn-block mt-5 bg-amber-400 text-white"
+              >
+                {isSubmitting ? <span className="loading loading-dots loading-md"></span> : "Masuk"}
               </button>
             </form>
           </div>

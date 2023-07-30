@@ -8,6 +8,42 @@
       "photo": "/avatar_default.png",
       "roles": "pekerja",
       "id": 5
+    },
+    {
+      "name": "Aji",
+      "email": "ajiprio@hotmail.com",
+      "photo": "/default.webp",
+      "phoneNumber": "08123456789",
+      "password": "123456789",
+      "roles": "pekerja",
+      "id": 6
+    },
+    {
+      "name": "Arsile",
+      "email": "itsarsile@gmail.com",
+      "photo": "/default.webp",
+      "phoneNumber": "081122334455",
+      "password": "password123",
+      "roles": "pekerja",
+      "id": 7
+    },
+    {
+      "name": "Arsile",
+      "email": "itsarsile@github.com",
+      "photo": "/default.webp",
+      "phoneNumber": "08123456",
+      "password": "password123",
+      "roles": "pekerja",
+      "id": 8
+    },
+    {
+      "name": "Arsile",
+      "email": "itsarsile@github.com",
+      "photo": "/default.webp",
+      "phoneNumber": "08123456",
+      "password": "password123",
+      "roles": "pekerja",
+      "id": 9
     }
   ]
 }

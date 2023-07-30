@@ -14,7 +14,6 @@ export const authOptions = {
                 const { email, password } = credentials
                 try {
                     const response = await fetch(`http://localhost:5000/users?email=${email}`)
-                    console.log
                     if (!response.ok) {
                         throw new Error("Error fetching user data")
                     }

@@ -6,8 +6,8 @@ import { AiFillCheckCircle } from "react-icons/ai";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const {data} = useSession()
-  console.log(data)
+  const { data, status } = useSession()
+  console.log(data?.user, status)
   return (
     <Layout>
       <main>
