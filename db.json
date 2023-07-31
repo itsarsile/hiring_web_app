@@ -102,6 +102,15 @@
       "endDate": "2024-10-29",
       "description": "Menjadi kuli adalah impian bapak jogo",
       "id": 2
+    },
+    {
+      "userId": 11,
+      "title": "Software Engineer",
+      "company": "Tokopedia",
+      "startDate": "2017-12-02",
+      "endDate": "2022-11-04",
+      "description": "Membuat aplikasi untuk Tokopedia",
+      "id": 3
     }
   ],
   "routes": {

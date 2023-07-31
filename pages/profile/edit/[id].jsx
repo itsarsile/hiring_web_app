@@ -67,7 +67,7 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
     initialValues: {
       userId: userInfo.id,
       title: "",
-      companyName: "",
+      company: "",
       startDate: "",
       endDate: "",
       description: "",
@@ -227,13 +227,10 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
                         className="textarea textarea-bordered"
                       ></textarea>
                       <button
-                        className="btn btn-block bg-primary text-white"
+                        className="btn btn-block bg-primary text-white mt-5"
                         type="submit"
                       >
                         Simpan
-                      </button>
-                      <button className="btn btn-block bg-none text-primary btn-outline border-primary">
-                        Batal
                       </button>
                     </form>
                   </div>
@@ -323,8 +320,8 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
                           </label>
                           <input
                             onChange={workExperienceForm.handleChange}
-                            value={workExperienceForm.values.companyName}
-                            name="companyName"
+                            value={workExperienceForm.values.company}
+                            name="company"
                             type="text"
                             className="input input-bordered w-full lg:w-[20rem]"
                             placeholder="PT. Cinta Sejati..."
