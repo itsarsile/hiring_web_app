@@ -16,12 +16,7 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
 
   const basicInfoForm = useFormik({
     initialValues: {
-      name: user?.name,
-      phoneNumber: "",
-      jobDesk: "",
-      domicile: "Not set yet",
-      workPlace: "",
-      bio: "",
+      ...userInfo
     },
     onSubmit: async (values) => {
       try {
@@ -130,7 +125,7 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
                   </div>
                   <div className="flex flex-col justify-center items-center space-y-2 mt-2">
                     <h1 className="font-medium">{userInfo?.name}</h1>
-                    <p className="text-slate-400 text-sm">{userInfo?.bio}</p>
+                    <p className="text-slate-400 text-sm">{userInfo?.workPlace}</p>
                     <p className="flex items-center text-sm gap-2 text-slate-400 lg:justify-start justify-center">
                       <span>
                         <svg
@@ -153,7 +148,7 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
                           />
                         </svg>
                       </span>
-                      {userInfo?.workPlace}
+                      {userInfo?.domicile}
                     </p>
                     <p className="text-slate-400 text-sm">{userInfo?.bio}</p>
                   </div>

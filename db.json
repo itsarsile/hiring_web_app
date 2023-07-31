@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "name": "Jogo Ratosu",
+      "name": "Gojo Satoru",
       "email": "gojo@gmail.com",
       "photo": "/default.webp",
       "phoneNumber": "",
@@ -25,12 +25,12 @@
         "CSS",
         "HTML"
       ],
-      "bio": "This is my bio!",
+      "bio": "hi",
       "roles": "pekerja",
       "id": 10,
-      "jobDesk": "Jujustu Sorcerer",
+      "jobDesk": "Freelancer",
       "domicile": "Tokyo",
-      "workPlace": "Jujutsu Highschool"
+      "workPlace": "Jakarta"
     },
     {
       "name": "Aji Prio Sejati",
