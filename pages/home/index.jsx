@@ -139,7 +139,7 @@ export default function Home({ users, currentPage, totalUsers }) {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center my-10 text-white">
+      <div className="flex justify-center my-5 text-white">
         <div className="join">
           {currentPage > 1 && (
             <button
@@ -176,7 +176,6 @@ export async function getServerSideProps({ query }) {
     );
     const users = await response.json();
 
-    console.log(users);
 
     return {
       props: {

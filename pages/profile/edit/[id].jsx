@@ -1,25 +1,48 @@
 import Layout from "@/components/layout";
 import axios from "axios";
 import { useFormik } from "formik";
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export default function EditProfilePage({ workExperienceInfo, userInfo }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { data: session, status } = useSession();
   let user = session?.user;
   if (status === "unauthenticated") {
     router.push("/");
   }
-
+  const handleSaveWorkExperience = async (values) => {
+    try {
+      setIsSubmitting(true);
+      const response = await axios.patch(
+        `http://localhost:5000/workExperience/${values.id}`,
+        values
+      );
+      if (response.status === 200) {
+        console.log("Work experience updated successfully");
+        router.reload();
+      }
+    } catch (error) {
+      console.error("Error updating work experience", error);
+    } finally {
+      setIsSubmitting(false);
+      setSelectedWorkExperience(null); 
+    }
+  };
+  const handleEditWorkExperience = (workExperience) => {
+    setSelectedWorkExperience(workExperience);
+  };
   const basicInfoForm = useFormik({
     initialValues: {
-      ...userInfo
+      ...userInfo,
     },
     onSubmit: async (values) => {
       try {
+        setIsSubmitting(true);
         const response = await axios.patch(
           `http://localhost:5000/users/${user?.id}`,
           values
@@ -27,10 +50,13 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
 
         if (response.status === 200) {
           console.log("User data updated successfully");
-          window.location.reload();
+          router.reload();
+          toast.success("Profile updated successfully!");
         }
       } catch (error) {
         console.error("Error updating user", error);
+      } finally {
+        setIsSubmitting(false);
       }
     },
   });
@@ -51,6 +77,7 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
         );
         if (response.status === 200) {
           console.log("User skills updated successfully");
+          router.reload()
         }
       } catch (error) {
         console.error("Error updating user skills", error);
@@ -69,15 +96,19 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
     },
     onSubmit: async (values) => {
       try {
+        setIsSubmitting(true);
         const response = await axios.post(
           `http://localhost:5000/workExperience`,
           values
         );
         if (response.status === 200) {
           console.log("Work experience added successfully");
+          router.reload();
         }
       } catch (error) {
         console.error("Error adding work experience", error);
+      } finally {
+        setIsSubmitting(false);
       }
     },
   });
@@ -90,8 +121,8 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
       userId: userInfo?.id,
     },
     onSubmit: async (values) => {
-      console.log(userInfo?.id)
-      values.userId = userInfo?.id
+      console.log(userInfo?.id);
+      values.userId = userInfo?.id;
       try {
         const response = await axios.post(
           `http://localhost:5000/portfolio`,
@@ -105,6 +136,21 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
       }
     },
   });
+
+  const handleDelete = async (endpoint, id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/${endpoint}/${id}`
+      );
+
+      if (response.status === 200) {
+        console.log(`${endpoint} with ${id} successfully deleted`);
+        router.reload();
+      }
+    } catch (error) {
+      console.log(`Error while deleting ${endpoint} with ${id}:`, error);
+    }
+  };
 
   return (
     <Layout>
@@ -125,7 +171,9 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
                   </div>
                   <div className="flex flex-col justify-center items-center space-y-2 mt-2">
                     <h1 className="font-medium">{userInfo?.name}</h1>
-                    <p className="text-slate-400 text-sm">{userInfo?.workPlace}</p>
+                    <p className="text-slate-400 text-sm">
+                      {userInfo?.workPlace}
+                    </p>
                     <p className="flex items-center text-sm gap-2 text-slate-400 lg:justify-start justify-center">
                       <span>
                         <svg
@@ -225,7 +273,11 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
                         className="btn btn-block bg-primary text-white mt-5"
                         type="submit"
                       >
-                        Simpan
+                        {isSubmitting ? (
+                          <span className="loading loading-dots loading-md"></span>
+                        ) : (
+                          "Simpan"
+                        )}
                       </button>
                     </form>
                   </div>
@@ -282,16 +334,23 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
                       </p>
                       <p className="mt-3">{workExperience.description}</p>
                       <div className="absolute right-0 space-x-2">
-                        <button className="btn btn-sm btn-error w-16 rounded-md">
+                        <button
+                          onClick={() =>
+                            handleDelete("workExperience", workExperience.id)
+                          }
+                          className="btn btn-sm btn-error w-16 rounded-md"
+                        >
                           X
                         </button>
-                        <div className="btn btn-sm btn-warning w-16 rounded-md">
+                        <div
+                          className="btn btn-sm btn-warning w-16 rounded-md"
+                        >
                           Edit
                         </div>
                       </div>
+                      <div className="divider w-full"></div>
                     </div>
                   ))}
-                  <div className="divider w-full"></div>
                   <div className="">
                     <form
                       onSubmit={workExperienceForm.handleSubmit}
@@ -361,12 +420,15 @@ export default function EditProfilePage({ workExperienceInfo, userInfo }) {
                         className="textarea textarea-bordered"
                         placeholder="Deskripsi singkat mengenai pekerjaan Anda"
                       ></textarea>
-                      <div className="divider"></div>
                       <button
+                        className="btn btn-block bg-primary text-white mt-5"
                         type="submit"
-                        className="btn btn-block bg-primary text-white"
                       >
-                        Tambah pengalaman kerja
+                        {isSubmitting ? (
+                          <span className="loading loading-dots loading-md"></span>
+                        ) : (
+                          "Tambah Pengalaman Kerja"
+                        )}
                       </button>
                     </form>
                   </div>

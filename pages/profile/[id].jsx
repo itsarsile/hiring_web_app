@@ -1,5 +1,6 @@
 import Layout from "@/components/layout";
 import Image from "next/image";
+import Link from "next/link";
 import { BsInstagram, BsEnvelope, BsGithub } from "react-icons/bs";
 
 export default function ProfilePage({ userInfo, portfolioInfo, workExperienceInfo }) {
@@ -20,10 +21,10 @@ export default function ProfilePage({ userInfo, portfolioInfo, workExperienceInf
                       className="rounded-full"
                     />
                   </div>
-                  <div className="flex flex-col space-y-2 mt-2 w-full">
+                  <div className="flex flex-col space-y-2 mt-2 w-full text-center lg:text-left">
                     <h1 className="font-bold">{userInfo.name}</h1>
-                    <p className="text-slate-400 text-sm">{userInfo.jobDesk}</p>
-                    <p className="flex items-center text-sm gap-2 text-slate-400 lg:justify-start justify-center">
+                    <p className="text-slate-400 text-sm">{userInfo.domicile}</p>
+                    <p className="flex items text-sm gap-2 text-slate-400 lg:justify-start justify-center">
                       <span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +56,7 @@ export default function ProfilePage({ userInfo, portfolioInfo, workExperienceInf
                 </div>
                 <div className="card-body gap-5">
                   <div className="card-title">Skill</div>
-                  <div className="flex gap-2 flex-wrap">
+                  <div className="flex gap-2 flex-nowrap">
                   {userInfo.skills.map((skill) => (
                     <span key={skill} className="badge badge-primary">{skill}</span>
                   ))}
@@ -90,12 +91,15 @@ export default function ProfilePage({ userInfo, portfolioInfo, workExperienceInf
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                   {portfolioInfo.map((portfolio) => (
                     <div key={portfolio.id} className="flex flex-col text-center gap-5">
+                      <a href={portfolio.linkRepo} target="_blank">
                       <Image
                         src={portfolio.linkImage}
                         width={220}
                         height={150}
                         alt="portfolio thumbnail"
+                        className="rounded-md shadow-md"
                       />
+                      </a>
                       <p>{portfolio.title}</p>
                     </div>
                   ))}

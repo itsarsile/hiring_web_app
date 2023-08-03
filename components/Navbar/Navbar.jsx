@@ -20,7 +20,7 @@ export default function Navbar() {
       <div className="navbar-end space-x-5">
         {status === "unauthenticated" ? (
           <button
-            className="btn rounded-md text-white bg-primary"
+            className="btn btm-nav-sm rounded-md text-white bg-primary"
             onClick={() => signIn("credentials")}
           >
             Masuk sebagai pekerja

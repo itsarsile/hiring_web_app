@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 
 const RegisterPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const router = useRouter()
   const [setOpen, setIsOpen] = useState(false);
   const [selectedLogin, setSelectedLogin] = useState(null);
@@ -46,6 +48,7 @@ const RegisterPage = () => {
     }),
     onSubmit: async (values) => {
       try {
+        setIsSubmitting(true)
         const DEFAULT_ROLES = "pekerja";
         values.roles = DEFAULT_ROLES;
 
@@ -64,7 +67,7 @@ const RegisterPage = () => {
         } else {
           console.error("Form submission failed!");
         }
-
+p
         const signInResponse = await signIn("credentials", {
           email: values.email,
           password: values.password,
@@ -78,6 +81,8 @@ const RegisterPage = () => {
         }
       } catch (error) {
         console.error("An error occured while registering or logging in: ", error);
+      } finally {
+        setIsSubmitting(false)
       }
     },
   });
@@ -261,11 +266,15 @@ const RegisterPage = () => {
               </div>
 
               <button
-                className="btn btn-block mt-5 bg-amber-400 text-white"
-                type="submit"
-              >
-                Daftar
-              </button>
+                        className="btn btn-block bg-primary text-white mt-5"
+                        type="submit"
+                      >
+                        {isSubmitting ? (
+                          <span className="loading loading-dots loading-md"></span>
+                        ) : (
+                          "Simpan"
+                        )}
+                      </button>
               <p className="text-center mt-5">
                 Anda sudah punya akun?
                 <Link href="/login" className="text-amber-400">

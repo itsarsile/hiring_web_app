@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "name": "Gojo Satoru",
+      "name": "Gojo Satoruu",
       "email": "gojo@gmail.com",
       "photo": "/default.webp",
       "phoneNumber": "",
@@ -23,9 +23,10 @@
         "Jujutsu",
         "Curse Techniques",
         "CSS",
-        "HTML"
+        "HTML",
+        "PHP"
       ],
-      "bio": "hi",
+      "bio": "Hello world!",
       "roles": "pekerja",
       "id": 10,
       "jobDesk": "Freelancer",
@@ -54,28 +55,33 @@
         "CSS",
         "React"
       ],
-      "bio": "Ini bio saya",
+      "bio": "Ini bio sayaaa",
       "roles": "pekerja",
       "id": 11
+    },
+    {
+      "name": "Harry Styles",
+      "email": "harry.styles@gmail.com",
+      "photo": "/default.webp",
+      "phoneNumber": "081234589",
+      "password": "password123",
+      "portfolioIds": [],
+      "workExpreienceIds": [],
+      "jobDesk": "",
+      "domicile": "Not set yet",
+      "workPlace": "",
+      "socialMediaAccounts": {
+        "email": "",
+        "github": "",
+        "instagram": ""
+      },
+      "skills": [],
+      "bio": "Not yet set",
+      "roles": "pekerja",
+      "id": 12
     }
   ],
   "portfolio": [
-    {
-      "id": 1,
-      "userId": 10,
-      "title": "Domain Expansion: Infinity",
-      "description": "An impressive display of the Cursed Technique - Domain Expansion.",
-      "url": "https://youtu.be/example-video",
-      "image": "/portfolio/gojo-domain-expansion.jpg"
-    },
-    {
-      "id": 2,
-      "userId": 10,
-      "title": "Blindfolded",
-      "description": "Fighting with a blindfold, showcasing incredible combat skills.",
-      "url": "https://www.instagram.com/p/example-post",
-      "image": "/portfolio/gojo-blindfolded.jpg"
-    },
     {
       "title": "Linux Kernel Project",
       "linkRepo": "https://github.com/torvalds/linux",
@@ -93,15 +99,6 @@
       "startDate": "2010-05-15",
       "endDate": null,
       "description": "Teaching at Tokyo Metropolitan Curse Technical College, helping students become skilled sorcerers."
-    },
-    {
-      "userId": 10,
-      "title": "Kuli Bangunan",
-      "companyName": "WASKITA",
-      "startDate": "2020-12-29",
-      "endDate": "2024-10-29",
-      "description": "Menjadi kuli adalah impian bapak jogo",
-      "id": 2
     },
     {
       "userId": 11,
