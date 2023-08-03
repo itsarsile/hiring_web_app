@@ -4,7 +4,7 @@ import Layout from "@/components/layout";
 import { signIn, useSession } from "next-auth/react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { useRouter } from "next/router";
-const inter = Inter({ subsets: ["latin"] });
+import TestimonyCarousel from "@/components/TestimonyCarousel";
 
 export default function Home() {
   const router = useRouter();
@@ -159,10 +159,11 @@ export default function Home() {
           </div>
         </section>
         <section className="bg-slate-200/60 min-h-screen mt-20">
-          <div className="p-20">
+          <div className="p-20 space-y-10">
             <h1 className="lg:text-5xl font-bold text-center">
               Their opinion about Peworld
             </h1>
+            <TestimonyCarousel />
           </div>
         </section>
       </main>
